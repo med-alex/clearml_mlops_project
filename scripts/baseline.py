@@ -27,7 +27,7 @@ score = log_loss(labels, blend.loc[gt_ids])
 task.upload_artifact(name="Score", artifact_object={'score': score})
 
 #Log a result csv and write to output file task.get_logger)-report
-task.get_logger().report_table ("Result csv",
+task.get_logger().report_table("Result csv",
                                 series="blend.csv",
                                 table_plot=blend.loc[sub_ids])
 blend.loc[sub_ids].to_csv(Path.cwd() / 'results' / 'blend.csv')
