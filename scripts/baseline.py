@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 from sklearn.metrics import log_loss
 from clearml import Task
-task = Task. init(project_name="TPS", task_name="blending")
+task = Task.init(project_name="TPS", task_name="blending")
 
 submission = pd.read_csv(Path.cwd() / 'data' / 'sample_submission.csv', index_col='id')
 labels = pd.read_csv(Path.cwd() / 'data' / 'train_labels.csv', index_col='id')
@@ -30,4 +30,4 @@ task.upload_artifact(name="Score", artifact_object={'score': score})
 task.get_logger().report_table ("Result csv",
                                 series="blend.csv",
                                 table_plot=blend.loc[sub_ids])
-blend.loc[sub_ids].to_csv(Path.cwd() / 'blend.csv')
+blend.loc[sub_ids].to_csv(Path.cwd() / 'results' / 'blend.csv')
